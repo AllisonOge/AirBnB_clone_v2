@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """Place Module for HBNB project."""
-from sqlalchemy.orm import relationship
+import models
 from models.base_model import Base, BaseModel
-from sqlalchemy import Column, String, Integer, Float, ForeignKey
-from os import environ
 from models.review import Review
+from sqlalchemy import Column, String, Integer, Float, ForeignKey
+from sqlalchemy.orm import relationship
+from os import environ
 
 
 class Place(BaseModel, Base):
@@ -29,7 +30,8 @@ class Place(BaseModel, Base):
         @property
         def reviews(self):
             """Review getter."""
-            return [o for o in storage.all(Review) if o.place_id == self.id]
+            return [o for o in models.storage.all(Review)
+                    if o.place_id == self.id]
 
     def __init__(self, *args, **kwargs):
         """Init method."""
