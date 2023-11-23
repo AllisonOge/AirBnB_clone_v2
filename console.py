@@ -278,5 +278,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    HBNBCommand().cmdloop(intro="Welcome to HBNBCommand program. " +
-                          "Type 'help' for a list of commands")
+    HBNBCommand().cmdloop()
