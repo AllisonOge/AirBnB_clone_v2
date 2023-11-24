@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
 
                 tokens = []
                 for token in pline[1:]:
-                    tokens.append(token.replace("\"", ""))
+                    tokens.append(token.replace(",", "").replace("\"", ""))
                 _args = " ".join(tokens)
         line = ' '.join([_cmd, _cls, _id, _args])
         return line
