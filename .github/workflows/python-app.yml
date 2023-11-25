@@ -32,4 +32,4 @@ jobs:
        python -m unittest discover tests
     - name: Run pycodesyte
       run: |
-        find . -mindepth -1 type f -name '*.py' | xargs pycodestyle
+        find . -mindepth 1 -type f -name '*.py' | xargs pycodestyle
