@@ -41,7 +41,9 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         base_str = base.__str__()
         self.assertEqual(base_str, "[BaseModel] ({}) {}"
-                         .format(base.id, base.to_dict()))
+                         .format(base.id, {k: v
+                                 for k, v in base.__dict__.items()
+                                 if k != "_sa_instance_state"}))
         self.assertEqual(type(base_str), str)
 
     def test_kwargs(self):
