@@ -26,6 +26,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        python -m pip install pycodestyle
         python -m pip install sqlalchemy
     - name: Run test cases in the test module
       run: |
