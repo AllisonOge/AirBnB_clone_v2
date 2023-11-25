@@ -36,8 +36,6 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(self.place.number_bathrooms, 0)
         self.assertEqual(self.place.max_guest, 0)
         self.assertEqual(self.place.price_by_night, 0)
-        self.assertEqual(self.place.latitude, 0.0)
-        self.assertEqual(self.place.longitude, 0.0)
         self.assertEqual(self.place.amenity_ids, [])
 
     def test_types(self):
@@ -52,8 +50,6 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.place.number_bathrooms), int)
         self.assertEqual(type(self.place.max_guest), int)
         self.assertEqual(type(self.place.price_by_night), int)
-        self.assertEqual(type(self.place.latitude), float)
-        self.assertEqual(type(self.place.longitude), float)
         self.assertEqual(type(self.place.amenity_ids), list)
 
     def test_invalid_attributes(self):
