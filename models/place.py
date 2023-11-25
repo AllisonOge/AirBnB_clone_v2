@@ -3,10 +3,17 @@
 import models
 from models.base_model import Base, BaseModel
 from models.review import Review
-from sqlalchemy import Column, String, Integer, Float, ForeignKey
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from os import environ
 
+
+place_amenity = Table(
+        "place_amenity",
+        Base.metadata,
+        Column("place_id", String(60), ForeignKey("places.id")),
+        Column("amenity_id", String(60), ForeignKey("amenities.id"))
+        )
 
 class Place(BaseModel, Base):
     """A place to stay."""
@@ -26,12 +33,23 @@ class Place(BaseModel, Base):
 
     if environ.get("HBNB_ENV") == "db":
         reviews = relationship("Review", backref="place", cascade="delete")
+        amenities = relationship("Amenity", secondary="place_amenity", backref="place_amenities", viewonly=False)
     else:
         @property
         def reviews(self):
             """Review getter."""
             return [o for o in models.storage.all(Review)
                     if o.place_id == self.id]
+        @property
+        def amenities(self):
+            """Amenties getter"""
+            return [o for o in models.all(Amenity)
+                    if o.place_id == self.id]
+        @amenities.setter
+        def amenities(self, obj):
+            """Amenities setter"""
+            if isinstance(obj, Amenity):
+                self.amenity_ids.append(obj.id)
 
     def __init__(self, *args, **kwargs):
         """Init method."""
