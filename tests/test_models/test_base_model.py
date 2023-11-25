@@ -41,7 +41,7 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         base_str = base.__str__()
         self.assertEqual(base_str, "[BaseModel] ({}) {}"
-                         .format(base.id, base.__dict__))
+                         .format(base.id, base.to_dict()))
         self.assertEqual(type(base_str), str)
 
     def test_kwargs(self):

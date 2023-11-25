@@ -35,7 +35,7 @@ class BaseModel:
     def __str__(self):
         """Return a string representation of the instance."""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        return '[{}] ({}) {}'.format(cls, self.id, self.to_dict())
 
     def save(self):
         """Update updated_at with current time when instance is changed."""
@@ -47,7 +47,7 @@ class BaseModel:
         """Convert instance into dict format."""
         dictionary = self.__dict__.copy()
 
-        if '_sa_instance_state' in dictionary:  # not serializable
+        if '_sa_instance_state' in dictionary:
             del dictionary['_sa_instance_state']
         dictionary.update({'__class__':
                           self.__class__.__name__})
