@@ -19,6 +19,7 @@ AirBnB clone built using the python language and Flask framework as part of the 
 1. The console project (completed - 7 days sprint)
 2. Web static project (completed - 2 days sprint)
 3. MySQL storage project (active - 6 days sprint)
+4. Deploy Web Static (active - 2 days sprint)
 
 ## Console CRUD operations
 
