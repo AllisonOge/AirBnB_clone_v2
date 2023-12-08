@@ -7,8 +7,9 @@ from fabric.api import local, put, run, env
 from datetime import datetime
 from os import path
 
-
 env.hosts = ['52.86.239.20', '100.26.241.183']
+
+
 def do_deploy(archive_path):
     """Function to deploy"""
     if not path.exists(archive_path):
@@ -27,5 +28,5 @@ def do_deploy(archive_path):
         run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
             .format(name))
         return True
-    except:
+    except Exception:
         return False
