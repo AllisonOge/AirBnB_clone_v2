@@ -4,6 +4,7 @@ Fabric script that creates and distributes an archive to your web servers,
 using the function deploy
 """
 from fabric.api import env
+import os
 
 
 do_pack = __import__('1-pack_web_static').do_pack
@@ -16,4 +17,5 @@ def deploy():
     archive_path = do_pack()
     if archive_path is None:
         return False
+    print("web_static packed: {} -> {}Bytes".format(archive_path, os.path.getsize(archive_path)))
     return do_deploy(archive_path)

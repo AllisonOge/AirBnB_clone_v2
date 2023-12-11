@@ -9,9 +9,10 @@ from fabric.api import local
 def do_pack():
     """Function to compress files"""
     local("mkdir -p versions")
-    file = local("tar -cvzf versions/web_static_$(date +%Y%m%d%H%M%S).tgz\
-        web_static")
+    timestamp = local("date +%Y%m%d%H%M%S", capture=True)
+    archive_name = "web_static_{}.tgz".format(timestamp)
+    file = local("tar -cvzf versions/{} web_static".format(archive_name))
     if file.succeeded:
-        return file
+        return "versions/{}".format(archive_name)
     else:
         return None
