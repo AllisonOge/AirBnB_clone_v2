@@ -10,11 +10,10 @@ import os
 do_pack = __import__('1-pack_web_static').do_pack
 do_deploy = __import__('2-do_deploy_web_static').do_deploy
 env.hosts = ['54.84.162.208', '54.175.225.209']
-
+archive_path = do_pack()
 
 def deploy():
     """Function to deploy"""
-    archive_path = do_pack()
     if archive_path is None:
         return False
     print("web_static packed: {} -> {}Bytes"
