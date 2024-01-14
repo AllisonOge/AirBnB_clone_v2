@@ -34,7 +34,7 @@ def python_text(text='is cool'):
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_n(n):
     """prints n is a number"""
-    return '{} is a number'.format(n)
+    return render_template('4-number.html', n=n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
