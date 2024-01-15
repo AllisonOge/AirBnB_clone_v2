@@ -3,9 +3,9 @@
 import models
 from models.base_model import Base, BaseModel
 from models.review import Review
+from models.amenity import Amenity
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from os import environ
 
 
 place_amenity = Table(
@@ -31,9 +31,10 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
 
-    if environ.get("HBNB_ENV") == "db":
+    if models.storage_type == "db":
         reviews = relationship("Review", backref="place", cascade="delete")
-        amenities = relationship("Amenity", secondary="place_amenity", backref="place_amenities", viewonly=False)
+        amenities = relationship("Amenity", secondary="place_amenity",
+                back_populates="place_amenities", viewonly=False)
     else:
         @property
         def reviews(self):

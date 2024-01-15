@@ -3,17 +3,23 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import models
 
 
 class Amenity(BaseModel, Base):
     """
     attributes:
-        name: empty
+        name: (str) name of amenity
+        place_amenity: (list) list of amenities associated with a place
     """
     __tablename__ = "amenities"
 
     name = Column(String(128), nullable=False)
-    place_amenities = relationship("Place", secondary="place_amenity", backref="amenities")
+    if models.storage_type == "db":
+        place_amenities = relationship("Place", secondary="place_amenity",
+                back_populates="amenities")
+    else:
+        place_amenities = []  # FIXME: handle logic
 
     def __init__(self, *args, **kwargs):
         """Init method."""
