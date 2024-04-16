@@ -4,7 +4,7 @@ A script that stars a Flask web application to load all cities
 of a State.
 If the storage engine is DBStorage, you must use cities relationship
 otherwise use the public getter method cities. After each session
-declare a method to handle @app.teardown_appcontext and call the 
+declare a method to handle @app.teardown_appcontext and call the
 storage.close() method.
 
 Get /cities_by_states
@@ -17,7 +17,6 @@ from models.state import State
 
 
 app = Flask(__name__)
-
 
 
 @app.teardown_appcontext

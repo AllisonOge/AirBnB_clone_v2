@@ -16,7 +16,6 @@ def teardown_db(_):
 def states_list():
     """Display a HTML page."""
     states = storage.all(State)
-    print(states)
     return render_template('7-states_list.html', states=states)
 
 
