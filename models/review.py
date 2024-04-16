@@ -17,4 +17,6 @@ class Review(BaseModel, Base):
         filtered_kwargs = {k: v for k, v in kwargs.items()
                            if hasattr(self, k) or k == "id"}
         super().__init__(*args, **filtered_kwargs)
-        self.text = kwargs.get("text", "")
+        self.text = kwargs.get("text", None)
+        self.place_id = kwargs.get("place_id", None)
+        self.user_id = kwargs.get("user_id", None)

@@ -22,4 +22,5 @@ class City(BaseModel, Base):
         filtered_kwargs = {k: v for k, v in kwargs.items()
                            if hasattr(self, k) or k == "id"}
         super().__init__(*args, **filtered_kwargs)
-        self.name = kwargs.get("name", "")
+        self.name = kwargs.get("name", None)
+        self.state_id = kwargs.get("state_id", None)

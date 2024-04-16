@@ -26,7 +26,7 @@ class User(BaseModel, Base):
         filtered_kwargs = {k: v for k, v in kwargs.items()
                            if hasattr(self, k) or k == "id"}
         super().__init__(*args, **filtered_kwargs)
-        self.email = kwargs.get("email", "")
-        self.password = kwargs.get("password", "")
+        self.email = kwargs.get("email", None)
+        self.password = kwargs.get("password", None)
         self.first_name = kwargs.get("first_name", "")
         self.last_name = kwargs.get("last_name", "")

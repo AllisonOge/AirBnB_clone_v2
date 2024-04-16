@@ -57,9 +57,11 @@ class Place(BaseModel, Base):
         filtered_kwargs = {k: v for k, v in kwargs.items()
                            if hasattr(self, k) or k == "id"}
         super().__init__(*args, **filtered_kwargs)
-        self.name = kwargs.get("name", "")
-        self.description = kwargs.get("description", "")
+        self.name = kwargs.get("name", None)
+        self.description = kwargs.get("description", None)
         self.number_rooms = kwargs.get("number_rooms", 0)
         self.number_bathrooms = kwargs.get("number_bathrooms", 0)
         self.max_guest = kwargs.get("max_guest", 0)
         self.price_by_night = kwargs.get("price_by_night", 0)
+        self.city_id = kwargs.get("city_id", None)
+        self.user_id = kwargs.get("state_id", None)
