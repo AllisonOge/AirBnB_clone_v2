@@ -64,6 +64,6 @@ class Place(BaseModel, Base):
         self.max_guest = kwargs.get("max_guest", 0)
         self.price_by_night = kwargs.get("price_by_night", 0)
         self.city_id = kwargs.get("city_id", None)
-        self.user_id = kwargs.get("state_id", None)
+        self.user_id = kwargs.get("user_id", None)
         self.latitude = kwargs.get("latitude", None)
         self.longitude = kwargs.get("longitude", None)
