@@ -28,5 +28,5 @@ class User(BaseModel, Base):
         super().__init__(*args, **filtered_kwargs)
         self.email = kwargs.get("email", None)
         self.password = kwargs.get("password", None)
-        self.first_name = kwargs.get("first_name", "")
-        self.last_name = kwargs.get("last_name", "")
+        self.first_name = kwargs.get("first_name", None)
+        self.last_name = kwargs.get("last_name", None)
