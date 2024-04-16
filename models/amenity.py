@@ -27,3 +27,4 @@ class Amenity(BaseModel, Base):
                            if hasattr(self, k) or k == "id"}
         super().__init__(*args, **filtered_kwargs)
         self.name = kwargs.get("name", None)
+        self.place_id = kwargs.get("place_id", None)
