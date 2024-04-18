@@ -33,7 +33,7 @@ class DBStorage:
         if os.environ.get("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
 
-    def all(self, cls=None):
+    def all(self, cls=None, id=None):
         """Query on the current database session."""
         if cls is None:
             classes = [User, State, City, Amenity, Place, Review]
@@ -42,6 +42,9 @@ class DBStorage:
                 objects += self.__session.query(c).all()
         else:
             objects = self.__session.query(cls).all()
+            if id is not None:
+                return {type(obj).__name__ + "." + obj.id: obj
+                        for obj in objects if obj.id == id}
         return {type(obj).__name__ + "." + obj.id: obj
                 for obj in objects}
 
